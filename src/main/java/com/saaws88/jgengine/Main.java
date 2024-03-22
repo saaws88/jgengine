@@ -31,9 +31,12 @@ public class Main implements Runnable {
     game.start();
   }
 
-  public static void init() {
+  public void init() {
     window = new Window(W, H, "Game");
+    renderer = new Renderer();
+    window.setBackgroundColour(1.0f, 0,0);
     window.create();
+    mesh.create();
   }
 
   public void run() {
@@ -42,7 +45,7 @@ public class Main implements Runnable {
       update();
       render();
       if (Input.isKeyDown(GLFW.GLFW_KEY_F11)) {
-        return;
+        window.setFullScreen(!window.isFullScreen());
       }
     }
     window.destroy();
@@ -56,10 +59,12 @@ public class Main implements Runnable {
   }
 
   private void render() {
+    renderer.renderMesh(mesh);
     window.swapBuffers();
   }
 
   public static void main(String[] args) {
     new Main().start();
   }
+
 }

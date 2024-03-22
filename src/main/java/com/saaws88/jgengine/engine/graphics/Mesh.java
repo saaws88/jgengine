@@ -1,5 +1,6 @@
 package com.saaws88.jgengine.engine.graphics;
 
+import lombok.Getter;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
@@ -9,6 +10,7 @@ import org.lwjgl.system.MemoryUtil;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+@Getter
 public class Mesh {
 
   private Vertex[] vertices;
@@ -16,6 +18,12 @@ public class Mesh {
   private int vao, pbo, ibo;
 
   public Mesh(Vertex[] vertices, int[] indices) {
+    this.vertices = vertices;
+    this.indices = indices;
+  }
+
+
+  public void create() {
 
     vao = GL30.glGenVertexArrays();
     GL30.glBindVertexArray(vao);
@@ -24,10 +32,11 @@ public class Mesh {
     float[] positionData = new float[vertices.length * 3];
 
     for (int i = 0; i < vertices.length; i++) {
-      positionData[i*3] = vertices[i].getPosition().getX();
-      positionData[i*3+1] = vertices[i].getPosition().getY();
-      positionData[i*3+2] = vertices[i].getPosition().getZ();
+      positionData[i * 3] = vertices[i].getPosition().getX();
+      positionData[i * 3 + 1] = vertices[i].getPosition().getY();
+      positionData[i * 3 + 2] = vertices[i].getPosition().getZ();
     }
+    positionBuffer.put(positionData).flip();
 
     pbo = GL15.glGenBuffers();
     GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, pbo);
@@ -45,23 +54,4 @@ public class Mesh {
 
   }
 
-  public Vertex[] getVertices() {
-    return vertices;
-  }
-
-  public int[] getIndices() {
-    return indices;
-  }
-
-  public int getVao() {
-    return vao;
-  }
-
-  public int getPbo() {
-    return pbo;
-  }
-
-  public int getIbo() {
-    return ibo;
-  }
 }
