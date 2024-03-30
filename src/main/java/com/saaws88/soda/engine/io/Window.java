@@ -1,6 +1,6 @@
-package com.saaws88.jgengine.engine.io;
+package com.saaws88.soda.engine.io;
 
-import com.saaws88.jgengine.engine.math.Vector3f;
+import com.saaws88.soda.engine.math.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
@@ -47,6 +47,8 @@ public class Window {
   private boolean isResized;
   private boolean isFullScreen;
   private int[] windowPosX = new int[1], windowPosY = new int[1];
+
+  //TODO Get direct control on isFullScreen param
 
   public Window(int width, int height, String title) {
 

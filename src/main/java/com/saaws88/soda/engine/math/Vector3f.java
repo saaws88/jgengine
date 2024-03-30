@@ -1,4 +1,4 @@
-package com.saaws88.jgengine.engine.math;
+package com.saaws88.soda.engine.math;
 
 public class Vector3f {
 

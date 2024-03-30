@@ -1,13 +1,17 @@
-package com.saaws88.jgengine;
+package com.saaws88.soda;
 
-import com.saaws88.jgengine.engine.graphics.Mesh;
-import com.saaws88.jgengine.engine.graphics.Renderer;
-import com.saaws88.jgengine.engine.graphics.Vertex;
-import com.saaws88.jgengine.engine.math.Vector3f;
+import com.saaws88.soda.engine.graphics.Mesh;
+import com.saaws88.soda.engine.graphics.Renderer;
+import com.saaws88.soda.engine.graphics.Vertex;
+import com.saaws88.soda.engine.math.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
-import com.saaws88.jgengine.engine.io.Input;
-import com.saaws88.jgengine.engine.io.Window;
+import com.saaws88.soda.engine.io.Input;
+import com.saaws88.soda.engine.io.Window;
+
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_F11;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
 
 public class Main implements Runnable {
 
@@ -41,11 +45,18 @@ public class Main implements Runnable {
 
   public void run() {
     init();
-    while (!window.shouldClose() && !Input.isKeyDown(GLFW.GLFW_KEY_ESCAPE)) {
+    while (!window.shouldClose()) {
       update();
       render();
-      if (Input.isKeyDown(GLFW.GLFW_KEY_F11)) {
+      if (Input.isKeyDown(GLFW_KEY_F11)) {
         window.setFullScreen(!window.isFullScreen());
+      }
+      if (Input.isKeyDown(GLFW_KEY_ESCAPE)) {
+        if (window.isFullScreen()) {
+          window.setFullScreen(!window.isFullScreen());
+        } else {
+          glfwSetWindowShouldClose(window.getWindow(), true);
+        }
       }
     }
     window.destroy();

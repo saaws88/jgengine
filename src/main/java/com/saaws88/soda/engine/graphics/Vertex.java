@@ -1,6 +1,6 @@
-package com.saaws88.jgengine.engine.graphics;
+package com.saaws88.soda.engine.graphics;
 
-import com.saaws88.jgengine.engine.math.Vector3f;
+import com.saaws88.soda.engine.math.Vector3f;
 
 public class Vertex {
 
