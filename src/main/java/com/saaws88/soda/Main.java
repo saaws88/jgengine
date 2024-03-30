@@ -2,6 +2,7 @@ package com.saaws88.soda;
 
 import com.saaws88.soda.engine.graphics.Mesh;
 import com.saaws88.soda.engine.graphics.Renderer;
+import com.saaws88.soda.engine.graphics.Shader;
 import com.saaws88.soda.engine.graphics.Vertex;
 import com.saaws88.soda.engine.math.Vector3f;
 import org.lwjgl.glfw.GLFW;
@@ -18,6 +19,7 @@ public class Main implements Runnable {
   public Thread game;
   public static Window window;
   public Renderer renderer;
+  public Shader shader;
   public static final int W = 1280, H = 760;
 
   public Mesh mesh = new Mesh(new Vertex[]{
@@ -37,10 +39,12 @@ public class Main implements Runnable {
 
   public void init() {
     window = new Window(W, H, "Game");
-    renderer = new Renderer();
+    shader = new Shader("shaders/mainVertex.glsl", "shaders/mainFragment.glsl");
+    renderer = new Renderer(shader);
     window.setBackgroundColour(1.0f, 0,0);
     window.create();
     mesh.create();
+    shader.create();
   }
 
   public void run() {
