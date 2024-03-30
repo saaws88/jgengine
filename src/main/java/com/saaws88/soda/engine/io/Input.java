@@ -1,4 +1,4 @@
-package com.saaws88.jgengine.engine.io;
+package com.saaws88.soda.engine.io;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCursorPosCallback;

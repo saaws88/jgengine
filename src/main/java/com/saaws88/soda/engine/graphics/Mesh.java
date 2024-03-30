@@ -1,4 +1,4 @@
-package com.saaws88.jgengine.engine.graphics;
+package com.saaws88.soda.engine.graphics;
 
 import lombok.Getter;
 import org.lwjgl.opengl.GL11;
