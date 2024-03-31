@@ -1,5 +1,6 @@
 package com.saaws88.soda;
 
+import com.saaws88.soda.engine.graphics.Material;
 import com.saaws88.soda.engine.graphics.Mesh;
 import com.saaws88.soda.engine.graphics.Renderer;
 import com.saaws88.soda.engine.graphics.Shader;
@@ -9,6 +10,7 @@ import org.lwjgl.glfw.GLFW;
 
 import com.saaws88.soda.engine.io.Input;
 import com.saaws88.soda.engine.io.Window;
+import org.lwjglx.util.vector.Vector2f;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_F11;
@@ -23,14 +25,15 @@ public class Main implements Runnable {
   public static final int W = 1280, H = 760;
 
   public Mesh mesh = new Mesh(new Vertex[]{
-      new Vertex(new Vector3f(-0.5f, 0.5f, 0.0f)),
-      new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f)),
-      new Vertex(new Vector3f(0.5f, -0.5f, 0.0f)),
-      new Vertex(new Vector3f(0.5f, 0.5f, 0.0f)),
+      new Vertex(new Vector3f(-0.5f, 0.5f, 0.0f), new Vector3f(1.0f, 0.0f, 0.0f), new Vector2f(0.0f, 0.0f)),
+      new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 1.0f, 0.0f), new Vector2f(0.0f, 0.0f)),
+      new Vertex(new Vector3f(0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 0.0f, 1.0f), new Vector2f(0.0f, 0.0f)),
+      new Vertex(new Vector3f(0.5f, 0.5f, 0.0f), new Vector3f(1.0f, 1.0f, 0.0f), new Vector2f(0.0f, 0.0f)),
   } , new int[] {
       0, 1, 2,
       0, 3, 2
-  });
+  },
+  new Material("textures/2.png)"));
 
   public void start() {
     game = new Thread(this, "game");
@@ -76,6 +79,12 @@ public class Main implements Runnable {
   private void render() {
     renderer.renderMesh(mesh);
     window.swapBuffers();
+  }
+
+  private void close() {
+    window.destroy();
+    mesh.destroy();
+    shader.destroy();
   }
 
   public static void main(String[] args) {

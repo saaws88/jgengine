@@ -1,17 +1,15 @@
 package com.saaws88.soda.engine.graphics;
 
 import com.saaws88.soda.engine.math.Vector3f;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.lwjglx.util.vector.Vector2f;
 
+@AllArgsConstructor
+@Getter
 public class Vertex {
 
-  private Vector3f position;
-
-  public Vertex(Vector3f position) {
-    this.position = position;
-  }
-
-  public Vector3f getPosition() {
-    return position;
-  }
+  private Vector3f position, color;
+  private Vector2f texture;
 
 }
