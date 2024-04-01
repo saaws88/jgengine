@@ -33,7 +33,7 @@ public class Main implements Runnable {
       0, 1, 2,
       0, 3, 2
   },
-  new Material("textures/2.png)"));
+  new Material("textures/2.png"));
 
   public void start() {
     game = new Thread(this, "game");

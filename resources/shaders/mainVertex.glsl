@@ -5,7 +5,7 @@ in vec3 color;
 in vec2 texture;
 
 out vec3 passColor;
-out vec3 passTexure;
+out vec2 passTexture;
 
 void main()
 {

@@ -17,28 +17,30 @@ public class Material {
   private static int FILE_NAME_INDEX = 0;
   private static int FILE_EXTENSION_INDEX = 1;
 
-
+  String path;
   private Texture texture;
   private float width, height;
   private int textureID;
 
   public Material(String path) {
-    try {
-      texture =
-          TextureLoader.getTexture
-              (path.split("[.]")[FILE_EXTENSION_INDEX],
-              Material.class.getClassLoader().getResourceAsStream(path),
-              GL_LINEAR);
-    } catch (IOException e) {
-      System.err.println("Can't find texture at " + path);
-    }
+    this.path = path;
   }
 
   public void create() {
 
-    width = texture.getWidth();
-    height = texture.getHeight();
-    textureID = texture.getTextureID();
+    try {
+      texture =
+          TextureLoader.getTexture
+              (path.split("[.]")[FILE_EXTENSION_INDEX],
+                  Material.class.getClassLoader().getResourceAsStream(path),
+                  GL_LINEAR);
+      width = texture.getWidth();
+      height = texture.getHeight();
+      textureID = texture.getTextureID();
+
+    } catch (IOException e) {
+      System.err.println("Can't find texture at " + path);
+    }
 
   }
 
